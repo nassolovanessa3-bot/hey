@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For My Handsome Love</title>
+    <style>
+      :root {
+        --bg1: #fff1f5;
+        --bg2: #ffe3ec;
+        --card: rgba(255, 255, 255, 0.78);
+        --pink: #ff5d8f;
+        --rose: #ff7aa2;
+        --deep: #7a264b;
+        --gold: #ffd166;
+        --text: #4f1d2e;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 30vh;
+        display: grid;
+        place-items: center;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(135deg, var(--bg1), var(--bg2), #fff7d6);
+        color: var(--text);
+        overflow: hidden;
+      }
+
+      .scene {
+        position: relative;
+        width: min(90vw, 700px);
+        height: min(54vh, 300px);
+        display: grid;
+        place-items: center;
+      }
+
+      .card {
+        position: relative;
+        z-index: 2;
+        width: min(76vw, 500px);
+        padding: 26px 22px 20px;
+        border-radius: 24px;
+        background: var(--card);
+        border: 1px solid rgba(255, 126, 166, 0.35);
+        box-shadow: 0 18px 40px rgba(138, 46, 72, 0.18);
+        text-align: center;
+        backdrop-filter: blur(8px);
+      }
+
+      .tag {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(255, 125, 170, 0.12);
+        color: var(--deep);
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      h1 {
+        margin: 14px 0 8px;
+        font-size: clamp(1.9rem, 4vw, 3.2rem);
+        line-height: 1.1;
+        color: var(--deep);
+      }
+
+      .smile-wrap {
+        width: 92px;
+        height: 92px;
+        margin: 12px auto 10px;
+        position: relative;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .face {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: linear-gradient(180deg, #ffdca0, #ffbf69);
+        box-shadow: inset -10px -8px 0 rgba(255, 145, 89, 0.15);
+      }
+
+      .eye {
+        position: absolute;
+        width: 12px;
+        height: 18px;
+        background: #3a1d28;
+        border-radius: 50%;
+        top: 42px;
+      }
+
+      .eye.left { left: 32px; }
+      .eye.right { right: 32px; }
+
+      .smile {
+        position: absolute;
+        left: 50%;
+        bottom: 28px;
+        width: 58px;
+        height: 30px;
+        transform: translateX(-50%);
+        border-bottom: 8px solid #3a1d28;
+        border-radius: 0 0 80px 80px;
+      }
+
+      p {
+        margin: 10px auto 0;
+        max-width: 500px;
+        font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+        line-height: 1.5;
+        color: var(--text);
+      }
+
+      .love-line {
+        margin-top: 12px;
+        font-weight: 700;
+        color: var(--pink);
+        letter-spacing: 0.04em;
+      }
+
+      .cta {
+        margin-top: 14px;
+        border: none;
+        border-radius: 999px;
+        padding: 10px 18px;
+        background: linear-gradient(135deg, var(--pink), #ff9bb7);
+        color: white;
+        font-size: 0.88rem;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 12px 26px rgba(255, 93, 143, 0.35);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .cta:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 16px 30px rgba(255, 93, 143, 0.42);
+      }
+
+      .card.pulse {
+        animation: cardPulse 0.7s ease;
+      }
+
+      .hearts {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .heart {
+        position: absolute;
+        width: 22px;
+        height: 22px;
+        background: rgba(255, 92, 154, 0.88);
+        transform: rotate(-45deg);
+        animation: drift 12s linear infinite;
+        opacity: 0.8;
+      }
+
+      .heart::before,
+      .heart::after {
+        content: "";
+        position: absolute;
+        width: 22px;
+        height: 22px;
+        background: inherit;
+        border-radius: 50%;
+      }
+
+      .heart::before { top: -11px; left: 0; }
+      .heart::after { left: 11px; top: 0; }
+
+      .heart:nth-child(1) { left: 8%; top: 18%; animation-delay: 0s; }
+      .heart:nth-child(2) { left: 18%; top: 58%; animation-delay: 2s; }
+      .heart:nth-child(3) { right: 12%; top: 20%; animation-delay: 1s; }
+      .heart:nth-child(4) { right: 18%; top: 65%; animation-delay: 3s; }
+      .heart:nth-child(5) { left: 48%; top: 12%; animation-delay: 2.5s; }
+      .heart:nth-child(6) { left: 56%; top: 72%; animation-delay: 5s; }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+      }
+
+      @keyframes drift {
+        0% {
+          transform: translateY(0) rotate(-45deg) scale(0.9);
+          opacity: 0;
+        }
+        20% { opacity: 0.9; }
+        100% {
+          transform: translateY(-120px) rotate(-25deg) scale(1.1);
+          opacity: 0;
+        }
+      }
+
+      @keyframes cardPulse {
+        0% { transform: scale(1); }
+        35% { transform: scale(1.03); }
+        100% { transform: scale(1); }
+      }
+
+      @media (max-width: 520px) {
+        .scene {
+          width: min(92vw, 620px);
+          height: min(56vh, 280px);
+        }
+
+        .card {
+          width: min(84vw, 440px);
+          padding: 22px 18px 18px;
+        }
+
+        h1 {
+          font-size: clamp(1.6rem, 7vw, 2.5rem);
+        }
+
+        .love-line {
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="scene">
+      <div class="hearts" aria-hidden="true">
+        <span class="heart"></span>
+        <span class="heart"></span>
+        <span class="heart"></span>
+        <span class="heart"></span>
+        <span class="heart"></span>
+        <span class="heart"></span>
+      </div>
+
+      <div class="card">
+        <div class="tag">My favorite smile</div>
+        <h1>Hey, handsome siraje 💖</h1>
+
+        <div class="smile-wrap" aria-label="smiling face">
+          <div class="face"></div>
+          <div class="eye left"></div>
+          <div class="eye right"></div>
+          <div class="smile"></div>
+        </div>
+
+        <p>
+          SIRAJE I hope this little note brings a smile to your face today.<br>
+          You are my handsome love, my comfort, and my favorite person to cheer up.
+        </p>
+
+        <p class="love-line" id="loveLine">Get well soon, my love — I’m praying for your smile every day. 😘</p>
+        <button class="cta" id="smileButton" type="button">Make him smile ✨</button>
+      </div>
+
+    </div>
+
+    <script>
+      const button = document.getElementById('smileButton');
+      const card = document.querySelector('.card');
+      const loveLine = document.getElementById('loveLine');
+      const messages = [
+        'You are my favorite smile, my handsome love. 💖',
+        'My heart smiles the most when I think of you. 😘',
+        'You are still the strongest, sweetest man I know. ✨',
+        'Keep smiling, love — I am always cheering for you. 🌷'
+        
+      ];
+
+      function burstHearts() {
+        const hearts = document.querySelector('.hearts');
+        for (let i = 0; i < 18; i++) {
+          const heart = document.createElement('span');
+          heart.className = 'heart';
+          heart.style.left = `${Math.random() * 100}%`;
+          heart.style.top = `${Math.random() * 90 + 5}%`;
+          heart.style.animationDelay = `${Math.random() * 0.8}s`;
+          heart.style.background = i % 2 === 0 ? 'rgba(255, 91, 145, 0.9)' : 'rgba(255, 194, 77, 0.9)';
+          hearts.appendChild(heart);
+          setTimeout(() => heart.remove(), 1200);
+        }
+      }
+
+      button.addEventListener('click', () => {
+        card.classList.remove('pulse');
+        void card.offsetWidth;
+        card.classList.add('pulse');
+        burstHearts();
+
+        const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+        loveLine.textContent = randomMessage;
+      });
+
+    </script>
+  </body>
+</html>
